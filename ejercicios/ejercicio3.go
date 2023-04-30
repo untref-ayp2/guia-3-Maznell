@@ -12,17 +12,17 @@ func main() {
 	l1.Append(1)
 	l1.Append(3)
 	l1.Append(5)
-	l1.Append(7)
-	l1.Append(9)
 
 	l2 := linkedlist.NewLinkedList[int]()
 	l2.Append(2)
 	l2.Append(4)
 	l2.Append(6)
+	l2.Append(8)
+	l2.Append(10)
 
 	/* concatenar(*l1, *l2) */
-	intercalar(*l1, *l2)
-
+	l3 := intercalar(*l1, *l2)
+	fmt.Println(l3.String())
 }
 
 func concatenar(l1, l2 linkedlist.LinkedList[int]) (l3 linkedlist.LinkedList[int]) {
@@ -45,11 +45,14 @@ func intercalar(l1, l2 linkedlist.LinkedList[int]) (l3 linkedlist.LinkedList[int
 		count = l2.Size()
 	}
 	for i := 0; i < count; i++ {
-		aux, _ := l1.Get(i)
-		l3.Append(int(aux))
-		aux, _ = l2.Get(i)
-		l3.Append(int(aux))
+		aux, err1 := l1.Get(i)
+		if err1 == nil {
+			l3.Append(int(aux))
+		}
+		aux, err1 = l2.Get(i)
+		if err1 == nil {
+			l3.Append(int(aux))
+		}
 	}
-	fmt.Println(l3.String())
 	return
 }

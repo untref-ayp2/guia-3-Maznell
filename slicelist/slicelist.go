@@ -1,7 +1,6 @@
 package slicelist
 
 type SliceList[T comparable] struct {
-	l := []T{}
 }
 
 func NewSliceList[T comparable]() *SliceList[T] {
